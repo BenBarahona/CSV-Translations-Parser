@@ -67,21 +67,24 @@ public class CSV_TranslationParse {
             allTranslationsMap.put("FieldName", strings[5].trim());
             allTranslationsMap.put("Description", strings[6]);
             
-            allTranslationsMap.put("English", strings[8]);
-            allTranslationsMap.put("German", strings[9]);
-            allTranslationsMap.put("Italian", strings[10]);
-            allTranslationsMap.put("Bulgarian", strings[11]);
-            allTranslationsMap.put("Serbian", strings[12]);
-            allTranslationsMap.put("Slovenian", strings[13]);
-            allTranslationsMap.put("Japanese", strings[14]);
-            allTranslationsMap.put("Chinese", strings[15]);
-            allTranslationsMap.put("UK", strings[16]);
-            allTranslationsMap.put("Australia", strings[17]);
-            allTranslationsMap.put("Turkish", strings[18]);
-            allTranslationsMap.put("Arabic", strings[19]);
-            allTranslationsMap.put("Polish", strings[20]);
-            allTranslationsMap.put("Russian", strings[21]);
-            allTranslationsMap.put("Spanish", strings[22]);
+            allTranslationsMap.put("English", strings[7]);
+            allTranslationsMap.put("Australia", strings[8]);
+            allTranslationsMap.put("Russian", strings[10]);
+            allTranslationsMap.put("German", strings[11]);
+            allTranslationsMap.put("Turkish", strings[12]);
+            allTranslationsMap.put("Italian", strings[13]);
+            allTranslationsMap.put("Bulgarian", strings[14]);
+            allTranslationsMap.put("Serbian", strings[15]);
+            allTranslationsMap.put("Slovenian", strings[16]);
+            allTranslationsMap.put("Japanese", strings[17]);
+            allTranslationsMap.put("Chinese", strings[18]);
+            allTranslationsMap.put("UK", strings[19]);
+            allTranslationsMap.put("Arabic", strings[20]);
+            allTranslationsMap.put("Polish", strings[21]);
+            allTranslationsMap.put("Netherlands", strings[22]);
+            allTranslationsMap.put("Spanish", strings[23]);
+            allTranslationsMap.put("Brazil", strings[24]);
+            allTranslationsMap.put("South_East_Asia", strings[25]);
             
             //For printing purposes
             for (int j = 0; j < strings.length; j++) {
@@ -98,21 +101,24 @@ public class CSV_TranslationParse {
             allTranslationsMap.put("FieldName", strings[5].trim());
             allTranslationsMap.put("Description", strings[6]);
             
-            allTranslationsMap.put("English", strings[8]);
-            allTranslationsMap.put("German", strings[9]);
-            allTranslationsMap.put("Italian", strings[10]);
-            allTranslationsMap.put("Bulgarian", strings[11]);
-            allTranslationsMap.put("Serbian", strings[12]);
-            allTranslationsMap.put("Slovenian", strings[13]);
-            allTranslationsMap.put("Japanese", strings[14]);
-            allTranslationsMap.put("Chinese", strings[15]);
-            allTranslationsMap.put("UK", strings[16]);
-            allTranslationsMap.put("Australia", strings[17]);
-            allTranslationsMap.put("Turkish", strings[18]);
-            allTranslationsMap.put("Arabic", strings[19]);
-            allTranslationsMap.put("Polish", strings[20]);
-            allTranslationsMap.put("Russian", strings[21]);
-            allTranslationsMap.put("Spanish", strings[22]);
+            allTranslationsMap.put("English", strings[7]);
+            allTranslationsMap.put("Australia", strings[8]);
+            allTranslationsMap.put("Russian", strings[10]);
+            allTranslationsMap.put("German", strings[11]);
+            allTranslationsMap.put("Turkish", strings[12]);
+            allTranslationsMap.put("Italian", strings[13]);
+            allTranslationsMap.put("Bulgarian", strings[14]);
+            allTranslationsMap.put("Serbian", strings[15]);
+            allTranslationsMap.put("Slovenian", strings[16]);
+            allTranslationsMap.put("Japanese", strings[17]);
+            allTranslationsMap.put("Chinese", strings[18]);
+            allTranslationsMap.put("UK", strings[19]);
+            allTranslationsMap.put("Arabic", strings[20]);
+            allTranslationsMap.put("Polish", strings[21]);
+            allTranslationsMap.put("Netherlands", strings[22]);
+            allTranslationsMap.put("Spanish", strings[23]);
+            allTranslationsMap.put("Brazil", strings[24]);
+            allTranslationsMap.put("South_East_Asia", strings[25]);
             
             nibFinalTranslationsList.add(allTranslationsMap);
         }
@@ -120,7 +126,7 @@ public class CSV_TranslationParse {
         createTranslationsForCountry("EN-US", "English");
         createTranslationsForCountry("AR", "Arabic");
         createTranslationsForCountry("BG", "Bulgarian");
-        createTranslationsForCountry("ZH", "Chinese");
+        createTranslationsForCountry("ZH-HANT", "Chinese");
         createTranslationsForCountry("DE", "German");
         createTranslationsForCountry("JA", "Japanese");
         createTranslationsForCountry("PL", "Polish");
@@ -132,11 +138,14 @@ public class CSV_TranslationParse {
         createTranslationsForCountry("IT", "Italian");
         createTranslationsForCountry("EN-GB", "UK");
         createTranslationsForCountry("EN-AU", "Australia");
+        createTranslationsForCountry("PT-BR", "Brazil");
+        createTranslationsForCountry("EN-HK", "South_East_Asia");
+        createTranslationsForCountry("NL", "Netherlands");
         
         createNIBTranslationsForCountry("EN-US", "English");
         createNIBTranslationsForCountry("AR", "Arabic");
         createNIBTranslationsForCountry("BG", "Bulgarian");
-        createNIBTranslationsForCountry("ZH", "Chinese");
+        createNIBTranslationsForCountry("ZH-HANT", "Chinese");
         createNIBTranslationsForCountry("DE", "German");
         createNIBTranslationsForCountry("JA", "Japanese");
         createNIBTranslationsForCountry("PL", "Polish");
@@ -148,6 +157,9 @@ public class CSV_TranslationParse {
         createNIBTranslationsForCountry("IT", "Italian");
         createNIBTranslationsForCountry("EN-GB", "UK");
         createNIBTranslationsForCountry("EN-AU", "Australia");
+        createNIBTranslationsForCountry("PT-BR", "Brazil");
+        createNIBTranslationsForCountry("EN-HK", "South_East_Asia");
+        createNIBTranslationsForCountry("NL", "Netherlands");
         
         compareTranslationsWithCSV("Translations.strings.csv");
     }
@@ -162,17 +174,19 @@ public class CSV_TranslationParse {
         
         for (int j = 0; j < finalTranslationsList.size(); j++) {
             Map<String, String> map = finalTranslationsList.get(j);
+            if(!map.get(country).replace("\"","").contentEquals(""))
+            {
+                System.out.println("Description: " + map.get("Description"));
+                System.out.println("FieldName: " + map.get("FieldName"));
+                System.out.println(code + ": " + map.get(country).replace("\"", ""));
+                System.out.println();
             
-            System.out.println("Description: " + map.get("Description"));
-            System.out.println("FieldName: " + map.get("FieldName"));
-            System.out.println(code + ": " + map.get(country).replace("\"", ""));
-            System.out.println();
-            
-            translationsFile.write("/* " + map.get("Description") + " */");
-            translationsFile.write("\n");
-            translationsFile.write("\"" + map.get("FieldName") + "\" = \"" + map.get(country).replace("\"", "") + "\";");
-            translationsFile.write("\n");
-            translationsFile.write("\n");
+                translationsFile.write("/* " + map.get("Description") + " */");
+                translationsFile.write("\n");
+                translationsFile.write("\"" + map.get("FieldName") + "\" = \"" + map.get(country).replace("\"", "") + "\";");
+                translationsFile.write("\n");
+                translationsFile.write("\n");
+            }
         }
         translationsFile.close();
     }
@@ -187,17 +201,19 @@ public class CSV_TranslationParse {
         
         for (int j = 0; j < nibFinalTranslationsList.size(); j++) {
             Map<String, String> map = nibFinalTranslationsList.get(j);
+            if(!map.get(country).replace("\"","").contentEquals(""))
+            {
+                System.out.println("Description: " + map.get("Description"));
+                System.out.println("FieldName: " + map.get("FieldName"));
+                System.out.println(code + ": " + map.get(country).replace("\"", ""));
+                System.out.println();
             
-            System.out.println("Description: " + map.get("Description"));
-            System.out.println("FieldName: " + map.get("FieldName"));
-            System.out.println(code + ": " + map.get(country).replace("\"", ""));
-            System.out.println();
-            
-            translationsFile.write("/* " + map.get("Description") + " */");
-            translationsFile.write("\n");
-            translationsFile.write("\"" + map.get("FieldName") + "\" = \"" + map.get(country).replace("\"", "") + "\";");
-            translationsFile.write("\n");
-            translationsFile.write("\n");
+                translationsFile.write("/* " + map.get("Description") + " */");
+                translationsFile.write("\n");
+                translationsFile.write("\"" + map.get("FieldName") + "\" = \"" + map.get(country).replace("\"", "") + "\";");
+                translationsFile.write("\n");
+                translationsFile.write("\n");
+            }
         }
         translationsFile.close();
     }
